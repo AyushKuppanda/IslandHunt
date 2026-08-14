@@ -807,7 +807,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tilemap_color1_32
+      name: ramp right 1
       rect:
         serializedVersion: 2
         x: 0
@@ -829,7 +829,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tilemap_color1_33
+      name: ramp left 1
       rect:
         serializedVersion: 2
         x: 192
@@ -939,7 +939,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tilemap_color1_38
+      name: ramp right 2
       rect:
         serializedVersion: 2
         x: 0
@@ -961,7 +961,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tilemap_color1_39
+      name: ramp left 2
       rect:
         serializedVersion: 2
         x: 192
@@ -1105,12 +1105,8 @@ TextureImporter:
       Tilemap_color1_3: 528242417
       Tilemap_color1_30: 555525117
       Tilemap_color1_31: 224130642
-      Tilemap_color1_32: -696246891
-      Tilemap_color1_33: -353147050
       Tilemap_color1_34: -603375033
       Tilemap_color1_37: 2063512874
-      Tilemap_color1_38: -1917148780
-      Tilemap_color1_39: 86328127
       Tilemap_color1_40: -1550972379
       Tilemap_color1_41: 709225523
       Tilemap_color1_42: -193961934
@@ -1128,6 +1124,10 @@ TextureImporter:
       gr8: 1338847096
       gr9: -1262573476
       n: -1855435782
+      ramp left 1: -353147050
+      ramp left 2: 86328127
+      ramp right 1: -696246891
+      ramp right 2: -1917148780
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
