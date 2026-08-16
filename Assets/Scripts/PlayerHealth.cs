@@ -36,6 +36,19 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    public void Heal(int amount)
+    {
+        currentHealth += amount;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
+        if (healthBar != null)
+        {
+            healthBar.value = currentHealth;
+        }
+
+        Debug.Log("Player healed: " + amount + " | HP: " + currentHealth);
+    }
+
     void Die()
     {
         Debug.Log("Player died");

@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
-    public float speed = 8f;
-    public int damage = 15;
+    public float speed = 6f;
+    public int damage = 10;
     Vector2 direction;
 
     void Start()
