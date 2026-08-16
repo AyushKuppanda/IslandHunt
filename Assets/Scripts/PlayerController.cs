@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     Vector2 moveInput;
     int currentDirection = 0; // 0=Front, 1=Left, 2=Right, 3=Up
     bool isAttacking = false;
+    public float attackRange = 1.2f;
+    public LayerMask enemyLayer; // assign "Enemy" layer in Inspector
 
     void Start()
     {
@@ -71,7 +73,8 @@ public class PlayerController : MonoBehaviour
             animator.SetInteger("AttackIndex", 0);
             animator.SetInteger("Direction", currentDirection);
             animator.SetTrigger("AttackTrigger");
-            Invoke(nameof(EndAttack), 0.5f); // adjust to match your attack clip length
+            DamageNearbyEnemies();
+            Invoke(nameof(EndAttack), 0.5f);
         }
         else if (Input.GetMouseButtonDown(1)) // Attack2
         {
@@ -79,7 +82,21 @@ public class PlayerController : MonoBehaviour
             animator.SetInteger("AttackIndex", 1);
             animator.SetInteger("Direction", currentDirection);
             animator.SetTrigger("AttackTrigger");
+            DamageNearbyEnemies();
             Invoke(nameof(EndAttack), 0.5f);
+        }
+    }
+
+    void DamageNearbyEnemies()
+    {
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, attackRange, enemyLayer);
+        foreach (Collider2D hit in hits)
+        {
+            EnemyHealth enemyHealth = hit.GetComponent<EnemyHealth>();
+            if (enemyHealth != null)
+            {
+                enemyHealth.TakeDamage(20); // adjust damage amount as needed
+            }
         }
     }
 

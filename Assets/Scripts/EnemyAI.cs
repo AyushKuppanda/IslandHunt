@@ -38,6 +38,8 @@ public class EnemyAI : MonoBehaviour
 
         float distance = Vector2.Distance(transform.position, player.position);
 
+        FacePlayer();
+
         switch (currentState)
         {
             case State.Idle:
@@ -55,7 +57,7 @@ public class EnemyAI : MonoBehaviour
                 {
                     currentState = State.Attack;
                 }
-                else if (distance > detectionRange * 1.5f) // lose interest if player runs far enough
+                else if (distance > detectionRange * 1.5f)
                 {
                     currentState = State.Idle;
                 }
@@ -66,7 +68,7 @@ public class EnemyAI : MonoBehaviour
 
                 if (distance > attackRange)
                 {
-                    currentState = State.Chase; // player moved away, resume chasing
+                    currentState = State.Chase;
                 }
                 else if (Time.time >= lastAttackTime + attackCooldown)
                 {
@@ -82,12 +84,6 @@ public class EnemyAI : MonoBehaviour
         {
             Vector2 direction = (player.position - transform.position).normalized;
             rb.linearVelocity = direction * moveSpeed;
-
-            // Flip sprite based on direction, if needed
-            if (direction.x != 0)
-            {
-                transform.localScale = new Vector3(Mathf.Sign(direction.x), 1, 1);
-            }
         }
         else
         {
@@ -95,12 +91,32 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    void FacePlayer()
+    {
+        float direction = player.position.x - transform.position.x;
+
+        if (direction > 0)
+        {
+            transform.localScale = new Vector3(1f, 1f, 1f);
+        }
+        else if (direction < 0)
+        {
+            transform.localScale = new Vector3(-1f, 1f, 1f);
+        }
+    }
+
     void PerformAttack()
     {
         lastAttackTime = Time.time;
 
-        int attackChoice = Random.Range(0, 2); // 0 = Attack1, 1 = Attack2
+        int attackChoice = Random.Range(0, 2);
         animator.SetInteger("AttackIndex", attackChoice);
         animator.SetTrigger("AttackTrigger");
+
+        PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+        if (playerHealth != null)
+        {
+            playerHealth.TakeDamage(10);
+        }
     }
 }
