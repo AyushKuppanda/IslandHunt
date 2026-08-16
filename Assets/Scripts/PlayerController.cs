@@ -67,19 +67,11 @@ public class PlayerController : MonoBehaviour
     {
         if (isAttacking) return;
 
-        if (Input.GetMouseButtonDown(0)) // Attack1
+        if (Input.GetMouseButtonDown(0)) // left click only
         {
             isAttacking = true;
-            animator.SetInteger("AttackIndex", 0);
-            animator.SetInteger("Direction", currentDirection);
-            animator.SetTrigger("AttackTrigger");
-            DamageNearbyEnemies();
-            Invoke(nameof(EndAttack), 0.5f);
-        }
-        else if (Input.GetMouseButtonDown(1)) // Attack2
-        {
-            isAttacking = true;
-            animator.SetInteger("AttackIndex", 1);
+            int attackChoice = Random.Range(0, 2); // randomly pick Attack1 or Attack2
+            animator.SetInteger("AttackIndex", attackChoice);
             animator.SetInteger("Direction", currentDirection);
             animator.SetTrigger("AttackTrigger");
             DamageNearbyEnemies();

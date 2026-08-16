@@ -6,6 +6,7 @@ public class PlayerHealth : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
     public Slider healthBar; // drag your HealthBar Slider here
+    public GameObject deathScreen;
 
     void Start()
     {
@@ -52,5 +53,12 @@ public class PlayerHealth : MonoBehaviour
     void Die()
     {
         Debug.Log("Player died");
+
+        if (deathScreen != null)
+        {
+            deathScreen.SetActive(true);
+        }
+        Time.timeScale = 0f;
     }
+
 }

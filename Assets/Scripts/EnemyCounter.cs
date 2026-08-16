@@ -8,6 +8,7 @@ public class EnemyCounter : MonoBehaviour
     int enemiesDefeated = 0;
 
     public GameObject castleDoor; // door blocking entry until unlocked
+    public TMPro.TextMeshProUGUI objectiveText;
 
     void Awake()
     {
@@ -30,7 +31,12 @@ public class EnemyCounter : MonoBehaviour
         Debug.Log("All enemies defeated - door unlocked!");
         if (castleDoor != null)
         {
-            castleDoor.SetActive(false); // disables the blocking door/collider
+            castleDoor.SetActive(false);
+        }
+
+        if (objectiveText != null)
+        {
+            objectiveText.text = "Enemies defeated - enter the castle";
         }
     }
 }
